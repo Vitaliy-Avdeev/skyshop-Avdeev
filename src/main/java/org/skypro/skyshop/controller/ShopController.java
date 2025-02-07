@@ -13,7 +13,7 @@ import java.util.Collection;
 
 @RestController
 public class ShopController {
-    private  final StorageService storageService;
+    private final StorageService storageService;
     private final SearchService searchService;
 
     public ShopController(StorageService storageService, SearchService searchService) {
@@ -31,6 +31,7 @@ public class ShopController {
         return storageService.getArticle().values();
 
     }
+
     @GetMapping("/search")
     public Collection<SearchResult> search(@RequestParam("pattern") String pattern) {
         return searchService.search(pattern).values();

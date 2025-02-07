@@ -11,29 +11,34 @@ public class Article implements Searchable {
     private final String articleText;
     private final UUID id;
 
-    public Article(UUID id,String articleTitle, String articleText) {
+    public Article(UUID id, String articleTitle, String articleText) {
         this.articleTitle = articleTitle;
         this.articleText = articleText;
-            this.id = id;
+        this.id = id;
     }
+
     @Override
     public String toString() {
         return "Название статьи: " + articleTitle + "; " + "Текст статьи: " + articleText + "; ";
     }
+
     @JsonIgnore
     @Override
     public String getSearchTerm() {
-        return this   + " Тип - " + getType();
+        return this + " Тип - " + getType();
     }
+
     @JsonIgnore
     @Override
     public String getType() {
         return " ARTICLE ";
     }
+
     @Override
     public String getStringRepresentation() {
-        return "№ id - " + getId() + "; " + getType()  + "; Название статьи: " + articleTitle + "; " + " Текст статьи: " + articleText;
+        return "№ id - " + getId() + "; " + getType() + "; Название статьи: " + articleTitle + "; " + " Текст статьи: " + articleText;
     }
+
     @Override
     public String getName() {
         return getSearchTerm();
@@ -46,10 +51,12 @@ public class Article implements Searchable {
         Article article = (Article) o;
         return Objects.equals(articleText, article.articleText) && Objects.equals(articleTitle, article.articleTitle);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(articleTitle, articleText);
     }
+
     @Override
     public UUID getId() {
         return id;

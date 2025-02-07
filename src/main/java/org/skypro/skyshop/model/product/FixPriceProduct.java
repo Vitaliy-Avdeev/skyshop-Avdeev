@@ -4,8 +4,9 @@ import java.util.UUID;
 
 public class FixPriceProduct extends Product {
     private static final double FIX_PRICE = 200;
-    public FixPriceProduct( UUID id,String name) {
-        super(id,name);
+
+    public FixPriceProduct(UUID id, String name) {
+        super(id, name);
     }
 
     @Override
@@ -20,7 +21,7 @@ public class FixPriceProduct extends Product {
 
     @Override
     public String toString() {
-        return "< " + getName() + " > : Фиксированная цена < " + FIX_PRICE + " > " ;
+        return "< " + getName() + " > : Фиксированная цена < " + FIX_PRICE + " > ";
     }
 
 }

@@ -6,6 +6,7 @@ public class DiscountedProduct extends Product {
     public double basePrice;
     public int discount;
 
+
     public DiscountedProduct(UUID id, String name, double basePrice, int discount) {
         super(id, name);
         if (basePrice < 1)

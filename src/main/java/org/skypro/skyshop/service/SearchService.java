@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeSet;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
@@ -18,12 +20,9 @@ public class SearchService {
 
     public Map<UUID, SearchResult> search(String pattern) {
         Map<UUID, Searchable> searchables = storageService.getSearchables();
-        Map<UUID, SearchResult> searchResults = new HashMap<>();
-        for (Searchable searchable : searchables.values()) {
-            if (searchable.getSearchTerm().contains(pattern)) {
-                searchResults.put(searchable.getId(), SearchResult.fromSearchable(searchable));
-            }
-        }
-        return searchResults;
+        TreeSet<Map.Entry<UUID, Searchable>> searchResults;
+        searchResults = searchables.entrySet().stream().filter(searchable -> searchable.getValue().getSearchTerm().contains(pattern))
+                .collect(Collectors.toCollection(TreeSet::new));
+        return (Map<UUID, SearchResult>) searchResults;
     }
 }

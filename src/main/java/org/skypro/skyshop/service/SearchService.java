@@ -17,7 +17,6 @@ public class SearchService {
     public SearchService(StorageService storageService) {
         this.storageService = storageService;
     }
-
     public Map<UUID, SearchResult> search(String pattern) {
         Map<UUID, Searchable> searchables = storageService.getSearchables();
         TreeSet<Map.Entry<UUID, Searchable>> searchResults;

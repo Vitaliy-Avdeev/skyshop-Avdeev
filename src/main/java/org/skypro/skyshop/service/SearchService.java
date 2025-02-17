@@ -4,7 +4,7 @@ import org.skypro.skyshop.model.search.SearchResult;
 import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -17,6 +17,7 @@ public class SearchService {
     public SearchService(StorageService storageService) {
         this.storageService = storageService;
     }
+
     public Map<UUID, SearchResult> search(String pattern) {
         Map<UUID, Searchable> searchables = storageService.getSearchables();
         TreeSet<Map.Entry<UUID, Searchable>> searchResults;

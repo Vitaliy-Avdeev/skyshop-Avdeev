@@ -55,22 +55,13 @@ public class StorageService {
         article.put(article2.getId(), article2);
         article.put(article3.getId(), article3);
         article.put(article4.getId(), article4);
-
     }
 
-    public Map<UUID, Searchable> getSearchables() {
-        Map<UUID, Searchable> searchables = new HashMap<>();
-        int i = 0;
-        for (Product product : product.values()) {
-            searchables.put(product.getId(), product);
-            i++;
-        }
-        for (Article article : article.values()) {
-            searchables.put(article.getId(), article);
-            i++;
-        }
-        return searchables;
-
+    public List<Searchable> getSearchable() {
+        List<Searchable> searchable = new ArrayList<>();
+        searchable.addAll(product.values());
+        searchable.addAll(article.values());
+        return searchable;
 
     }
 }

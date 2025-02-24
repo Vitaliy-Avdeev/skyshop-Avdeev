@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Product implements Searchable {
-    private final UUID id ;
+    private final UUID id;
     protected String name;
 
     public Product(UUID id, String name) {
@@ -17,11 +17,13 @@ public abstract class Product implements Searchable {
         this.name = name;
         this.id = id;
     }
+
     @JsonIgnore
     @Override
     public String getSearchTerm() {
         return getName() + " - " + getType() + " - " + getId();
     }
+
     @JsonIgnore
     @Override
     public String getType() {
@@ -37,10 +39,12 @@ public abstract class Product implements Searchable {
     public abstract boolean isSpecial();
 
     public abstract String toString();
+
     @Override
     public UUID getId() {
         return id;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,6 +52,7 @@ public abstract class Product implements Searchable {
         Product product = (Product) o;
         return Objects.equals(name, product.name);
     }
+
     @Override
     public int hashCode() {
         return Objects.hashCode(name);

@@ -1,12 +1,8 @@
 package org.skypro.skyshop.service;
 
 import org.skypro.skyshop.model.search.SearchResult;
-import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class SearchService {
@@ -15,14 +11,10 @@ public class SearchService {
     public SearchService(StorageService storageService) {
         this.storageService = storageService;
     }
-    public Map<UUID, SearchResult> search(String pattern) {
-        Map<UUID, Searchable> searchables = storageService.getSearchables();
-        Map<UUID, SearchResult> searchResults = new HashMap<>();
-        for(Searchable searchable : searchables.values()) {
-            if (searchable.getSearchTerm().contains(pattern)) {
-                searchResults.put(searchable.getId(), SearchResult.fromSearchable(searchable));
-            }
-        }
-        return searchResults;
+    public List<SearchResult> search(String pattern) {
+        return storageService.getSearchable().stream()
+                .filter(entry -> entry.getSearchTerm().contains(pattern))
+                .map(SearchResult::fromSearchable).toList();
+
     }
 }

@@ -12,23 +12,23 @@ import java.util.*;
 
 @Service
 public class StorageService {
-    private final Map<UUID, Product> product;
-    private final Map<UUID, Article> article;
+    private final Map<UUID, Product> availableProducts;
+    private final Map<UUID, Article> availableArticle;
 
-    public StorageService(Map<UUID, Product> product, Map<UUID, Article> article) {
-        this.product = product;
-        this.article = article;
+    public StorageService(Map<UUID, Product> availableProducts, Map<UUID, Article> availableArticle) {
+        this.availableProducts = availableProducts;
+        this.availableArticle = availableArticle;
 
         implementationOfTestData();
-        System.out.println(product.values());
+        System.out.println(availableProducts.values());
     }
 
     public Map<UUID, Product> getProduct() {
-        return this.product;
+        return this.availableProducts;
     }
 
     public Map<UUID, Article> getArticle() {
-        return this.article;
+        return this.availableArticle;
     }
 
     private void implementationOfTestData() {
@@ -44,27 +44,32 @@ public class StorageService {
         Article article3 = new Article(UUID.randomUUID(), "33", "33");
         Article article4 = new Article(UUID.randomUUID(), "4", "4");
 
-        product.put(product1.getId(), product1);
-        product.put(product2.getId(), product2);
-        product.put(product3.getId(), product3);
-        product.put(product4.getId(), product4);
-        product.put(product5.getId(), product5);
-        product.put(product6.getId(), product6);
+        availableProducts.put(product1.getId(), product1);
+        availableProducts.put(product2.getId(), product2);
+        availableProducts.put(product3.getId(), product3);
+        availableProducts.put(product4.getId(), product4);
+        availableProducts.put(product5.getId(), product5);
+        availableProducts.put(product6.getId(), product6);
 
-        article.put(article1.getId(), article1);
-        article.put(article2.getId(), article2);
-        article.put(article3.getId(), article3);
-        article.put(article4.getId(), article4);
+        availableArticle.put(article1.getId(), article1);
+        availableArticle.put(article2.getId(), article2);
+        availableArticle.put(article3.getId(), article3);
+        availableArticle.put(article4.getId(), article4);
     }
 
     public List<Searchable> getSearchable() {
         List<Searchable> searchable = new ArrayList<>();
-        searchable.addAll(product.values());
-        searchable.addAll(article.values());
+        searchable.addAll(availableProducts.values());
+        searchable.addAll(availableArticle.values());
         return searchable;
+    }
+
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(availableProducts.get(id));
 
     }
 }
+
 
 
 

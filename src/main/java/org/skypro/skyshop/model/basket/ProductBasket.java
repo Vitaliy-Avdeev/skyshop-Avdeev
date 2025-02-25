@@ -6,12 +6,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @SessionScoped
-public final class ProductBasket {
-    private final Map<UUID, Integer> basket;
-
-    public ProductBasket(Map<UUID, Integer> basket) {
-        this.basket = basket;
-    }
+public record ProductBasket(Map<UUID, Integer> basket) {
 
     public void addProduct(UUID productId) {
         if (basket.containsKey(productId)) {
@@ -21,6 +16,7 @@ public final class ProductBasket {
         }
     }
 
+    @Override
     public Map<UUID, Integer> basket() {
         return Collections.unmodifiableMap(basket);
     }
@@ -31,11 +27,6 @@ public final class ProductBasket {
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (ProductBasket) obj;
         return Objects.equals(this.basket, that.basket);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(basket);
     }
 
     @Override

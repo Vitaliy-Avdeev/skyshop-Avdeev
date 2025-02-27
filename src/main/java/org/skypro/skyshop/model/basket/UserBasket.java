@@ -8,7 +8,7 @@ public class UserBasket {
 
     public UserBasket(ArrayList<BasketItem> basket) {
         this.basket = basket;
-        this.total = (double) basket.stream().mapToDouble(item -> item.getProduct().getPrice() * item.getCount()).sum();
+        this.total = (double) basket.stream().mapToDouble(item -> item.product().getPrice() * item.count()).sum();
 
     }
 

@@ -1,21 +1,13 @@
 package org.skypro.skyshop.model.basket;
 
 import org.skypro.skyshop.model.product.Product;
+public record BasketItem(Product product, int count) {
 
-public class BasketItem {
-    private final Product product;
-    private final int count;
-
-    public BasketItem(Product product, int count) {
-        this.product = product;
-        this.count = count;
+    @Override
+    public String toString() {
+        return "BasketItem[" +
+                "product=" + product + ", " +
+                "count=" + count + ']';
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public int getCount() {
-        return count;
-    }
 }
